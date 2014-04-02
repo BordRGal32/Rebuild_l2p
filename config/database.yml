@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  database: l2p_development
+
+test:
+  adapter: postgresql
+  database: l2p_test
+
