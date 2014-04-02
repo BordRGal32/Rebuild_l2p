@@ -1,0 +1,24 @@
+<h1>Edit <%= @section.name %></h1>
+
+<% if @section.errors.any? %>
+  <h3> Please fix these errors: </h3>
+  <ul>
+    <% @section.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+   <% end %>
+ </ul>
+ <%end%>
+
+<form action="/sections/<%=@section.id%>" method="post">
+  <input name="_method" type='hidden' value='patch'>
+  <label for="section_name">Name</label>
+  <input id="section_name" name="section[name]" type="text" value='<%=@section.name%>'>
+  <label for="section_number">Number</label>
+  <input id="section_number" name="section[number]" type="text" value='<%=@section.number%>'>
+  <select id ="section_chapter_id" name = "section[chapter_id]" type = "string">
+    <% Chapter.all.each do |chapter| %>
+      <option value = "<%= chapter.id%>"><%= chapter.name %></option>
+    <% end %>
+  </select>
+  <button type="submit">Update Lesson</button>
+</form>

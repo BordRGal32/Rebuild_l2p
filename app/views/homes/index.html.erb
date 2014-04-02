@@ -1,0 +1,17 @@
+<h1>Home Page</h1>
+
+<ul>
+  <%Chapter.all.each do |chapter|%>
+    <li><%=chapter.name%></li>
+    <ul>
+    <%chapter.sections.all.each do |section|%>
+      <li><%=section.name%></li>
+      <ul>
+      <%section.lessons.all.each do |lesson|%>
+      <li><a href = "lessons/<%=lesson.id%>"><%=lesson.name%></a></li>
+      <%end%>
+      </ul>
+    <%end%>
+    </ul>
+  <%end%>
+</ul>

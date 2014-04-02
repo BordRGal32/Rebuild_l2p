@@ -1,0 +1,30 @@
+<h1>Sections</h1>
+<% if @section.errors.any? %>
+  <h3> Please fix these errors: </h3>
+  <ul>
+    <% @section.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+   <% end %>
+ </ul>
+ <%end%>
+
+<ul>
+  <% @sections.order(:number).each do |section| %>
+   <li><a href="/sections/<%= section.id %>"><%= section.name %></a></li>
+  <% end %>
+</ul>
+
+<h1>New Section</h1>
+
+<form action="/sections/" method="post">
+  <label for="section_name">Name</label>
+  <input id="section_name" name="section[name]" type="text">
+  <label for="section_number">Number</label>
+  <input id="section_number" name="section[number]" type="text">
+  <select id ="section_chapter_id" name = "section[chapter_id]" type = "string">
+    <% Chapter.all.each do |chapter| %>
+      <option value = "<%= chapter.id%>"><%= chapter.name %></option>
+    <% end %>
+  </select>
+  <button>Create Section</button>
+</form>

@@ -1,0 +1,25 @@
+<h1>Chapters</h1>
+<% if @chapter.errors.any? %>
+  <h3> Please fix these errors: </h3>
+  <ul>
+    <% @chapter.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+   <% end %>
+ </ul>
+ <%end%>
+
+<ul>
+  <% @chapters.order(:number).each do |chapter| %>
+   <li><a href="/chapters/<%= chapter.id %>"><%= chapter.name %></a></li>
+  <% end %>
+</ul>
+
+<h1>New Chapter</h1>
+
+<form action="/chapters/" method="post">
+  <label for="chapter_name">Name</label>
+  <input id="chapter_name" name="chapter[name]" type="text">
+  <label for="chapter_number">Number</label>
+  <input id="chapter_number" name="chapter[number]" type="text">
+  <button>Create Chapter</button>
+</form>
